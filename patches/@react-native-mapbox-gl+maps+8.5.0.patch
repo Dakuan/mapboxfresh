@@ -1,0 +1,35 @@
+diff --git a/node_modules/@react-native-mapbox-gl/maps/android/build.gradle b/node_modules/@react-native-mapbox-gl/maps/android/build.gradle
+index 0c9b837..429f86e 100644
+--- a/node_modules/@react-native-mapbox-gl/maps/android/build.gradle
++++ b/node_modules/@react-native-mapbox-gl/maps/android/build.gradle
+@@ -10,7 +10,7 @@ buildscript {
+     }
+     repositories {
+         google()
+-        jcenter()
++        mavenCentral()
+     }
+     dependencies {
+         classpath 'com.android.tools.build:gradle:3.5.2'
+@@ -24,7 +24,20 @@ allprojects {
+     repositories {
+         mavenLocal()
+         google()
+-        jcenter()
++        mavenCentral()
++        maven {
++            url 'https://api.mapbox.com/downloads/v2/releases/maven'
++            authentication {
++                basic(BasicAuthentication)
++            }
++            credentials {
++                // Do not change the username below.
++                // This should always be `mapbox` (not your username). 
++                username = 'mapbox'
++                // Use the secret token you stored in gradle.properties as the password
++                password = 'sk.blahblahblah'
++            }
++        }
+         maven { url "https://jitpack.io" }
+         maven {
+             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
